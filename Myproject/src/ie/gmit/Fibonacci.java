@@ -21,7 +21,7 @@ public class Fibonacci extends UnicastRemoteObject implements RemoteFibonacci{
 		
 		for(int i=0;i<=max;i++){
 			container.append(fibonacciRecusion(i)+",");// collections
-			
+			System.out.println("Fib value " + i);
 		}
 		return container.toString();
 	}

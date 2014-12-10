@@ -20,7 +20,7 @@ public class Requestservlett extends HttpServlet {
 
 	FibService fibService;
 	
-	
+	int jobnumberTemp;
 	/**
 	 * Initialization of the servlet. <br>
 	 *
@@ -42,6 +42,7 @@ public class Requestservlett extends HttpServlet {
 		
 	}
 	
+	
 	/**
 	 * Destruction of the servlet. <br>
 	 */
@@ -60,21 +61,19 @@ public class Requestservlett extends HttpServlet {
 		if(file.createNewFile())
 		System.out.println(file.getAbsolutePath());
 		
-		String max=request.getParameter("max");// get String representation of users input
-		 int jobNum=fibService.add(Integer.valueOf(max));// get random job number
+		
+		 
 		 String type=request.getParameter("request-type");
 		 
 		 //PrintWriter print=response.getWriter(); // get the writer
 		 if(type.equals("add")){
-			 
+			 String max=request.getParameter("max");// get String representation of users input
+			 int jobNum=fibService.add(Integer.valueOf(max));// get random job number
 			 
 			 try {
-					RemoteFibonacci	remoteFibonacci = (RemoteFibonacci) Naming.lookup("rmi://localhost:1099/fib");
-					String result=remoteFibonacci.getFibancciSequence(Integer.parseInt(max));
-					fibService.put(jobNum, result);
-					System.out.println(result);
+				 request.setAttribute("max",max);
 					request.setAttribute("jobnum",jobNum);
-					request.setAttribute("result", result);
+					
 					System.out.println(jobNum);
 					 request.getRequestDispatcher("response.jsp").forward(request, response);
 				} catch (Exception e) {
@@ -82,11 +81,31 @@ public class Requestservlett extends HttpServlet {
 					e.printStackTrace();
 				}
 		 }else if(type.equals("poll")){
-			 String result=fibService.getResult(jobNum);
-			 if(result!=null){
-				response.sendRedirect("result.jsp?result="+result);
-			 }else {
-				 response.sendRedirect("response.jsp");
+			// String result=fibService.getResult(jobNum);
+			 System.out.println("poll is here");
+			 RemoteFibonacci remoteFibonacci;
+			try {
+				remoteFibonacci = (RemoteFibonacci) Naming.lookup("rmi://localhost:1099/fib");
+				 System.out.println("after naming"+remoteFibonacci);
+				 System.out.println(request.getParameter("num"));
+				String result=remoteFibonacci.getFibancciSequence(Integer.parseInt(request.getParameter("num")));
+				 System.out.println("after result");
+				 
+				request.setAttribute("result", result);
+//				String jnum=request.getParameter("num");
+//				fibService.put(Integer.valueOf(jnum), result);
+				System.out.println(result);
+				
+				 if(result!=null){
+						response.sendRedirect("result.jsp?result="+result);
+						return;
+					 }else {
+						 response.sendRedirect("response.jsp");
+						 return;
+					}
+			} catch (NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		 }
 		
