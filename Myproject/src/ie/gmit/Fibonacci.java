@@ -2,6 +2,8 @@ package ie.gmit;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is impl class for that remote interface
@@ -19,11 +21,12 @@ public class Fibonacci extends UnicastRemoteObject implements RemoteFibonacci{
 	public String getFibancciSequence(int max) throws RemoteException {
 		StringBuffer container=new StringBuffer();
 		
-		for(int i=0;i<=max;i++){
-			container.append(fibonacciRecusion(i)+",");// collections
-			System.out.println("Fib value " + i);
+		
+		List<Integer> results = new ArrayList<Integer>();
+		for (int i=0; i<max; i++){
+			results.add((int) Math.round(Math.pow(Math.sqrt(5)+1, i) / (Math.pow(2, i) * Math.sqrt(5))));
 		}
-		return container.toString();
+		return results.toString();
 	}
 	
 	public static int fibonacciRecusion(int i){

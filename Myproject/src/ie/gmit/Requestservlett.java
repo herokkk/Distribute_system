@@ -83,6 +83,7 @@ public class Requestservlett extends HttpServlet {
 		 }else if(type.equals("poll")){
 			// String result=fibService.getResult(jobNum);
 			 System.out.println("poll is here");
+			
 			 RemoteFibonacci remoteFibonacci;
 			try {
 				remoteFibonacci = (RemoteFibonacci) Naming.lookup("rmi://localhost:1099/fib");
