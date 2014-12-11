@@ -48,15 +48,13 @@ public class Requestservlett extends HttpServlet {
 	 */
 	public void destroy() {
 		super.destroy(); // Just puts "destroy" string in log
-		// Put your code here
+	
 	}
 
 	@SuppressWarnings("deprecation")
 	public void doGet(HttpServletRequest request,HttpServletResponse response)
 			throws ServletException, IOException {
-		//response.setIntHeader("refresh",10);
-		
-		//String url=getServletContext().getRealPath("")+"\\my.txt";
+	
 		File file=new File("\\my.txt");
 		if(file.createNewFile())
 		System.out.println(file.getAbsolutePath());
@@ -65,7 +63,6 @@ public class Requestservlett extends HttpServlet {
 		 
 		 String type=request.getParameter("request-type");
 		 
-		 //PrintWriter print=response.getWriter(); // get the writer
 		 if(type.equals("add")){
 			 String max=request.getParameter("max");// get String representation of users input
 			 int jobNum=fibService.add(Integer.valueOf(max));// get random job number
@@ -81,7 +78,7 @@ public class Requestservlett extends HttpServlet {
 					e.printStackTrace();
 				}
 		 }else if(type.equals("poll")){
-			// String result=fibService.getResult(jobNum);
+			
 			 System.out.println("poll is here");
 			
 			 RemoteFibonacci remoteFibonacci;
@@ -93,8 +90,7 @@ public class Requestservlett extends HttpServlet {
 				 System.out.println("after result");
 				 
 				request.setAttribute("result", result);
-//				String jnum=request.getParameter("num");
-//				fibService.put(Integer.valueOf(jnum), result);
+
 				System.out.println(result);
 				
 				 if(result!=null){
