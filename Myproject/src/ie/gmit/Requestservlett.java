@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Requestservlett extends HttpServlet {
 
-	FibonacciService fibService;
+	FibService fibService;
 	
 	int jobnumberTemp;
 	/**
@@ -28,7 +28,7 @@ public class Requestservlett extends HttpServlet {
 	 */
 	public void init() throws ServletException {
 		// Put your code here
-		fibService=new FibonacciService();
+		fibService=new FibService();
 		
 		try {
 			RemoteFibonacci fib=new Fibonacci(1099);
