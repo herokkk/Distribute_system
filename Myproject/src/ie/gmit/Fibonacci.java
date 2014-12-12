@@ -19,9 +19,9 @@ public class Fibonacci extends UnicastRemoteObject implements RemoteFibonacci{
 
 	@Override
 	public String getFibancciSequence(int max) throws RemoteException {
-		List<Integer> results = new ArrayList<Integer>();
+		List<Long> results = new ArrayList<Long>();
 		for (int i=0; i<max; i++){
-			results.add((int) Math.round(Math.pow(Math.sqrt(5)+1, i) / (Math.pow(2, i) * Math.sqrt(5))));
+			results.add((long) Math.round(Math.pow(Math.sqrt(5)+1, i) / (Math.pow(2, i) * Math.sqrt(5))));
 		}
 		return results.toString();
 	}

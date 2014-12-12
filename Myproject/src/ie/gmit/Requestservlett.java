@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Requestservlett extends HttpServlet {
 
-	FibService fibService;
+	FibonacciService fibService;
 	
 	int jobnumberTemp;
 	/**
@@ -28,7 +28,7 @@ public class Requestservlett extends HttpServlet {
 	 */
 	public void init() throws ServletException {
 		// Put your code here
-		fibService=new FibService();
+		fibService=new FibonacciService();
 		
 		try {
 			RemoteFibonacci fib=new Fibonacci(1099);
@@ -70,29 +70,19 @@ public class Requestservlett extends HttpServlet {
 			 try {
 				 request.setAttribute("max",max);
 					request.setAttribute("jobnum",jobNum);
-					
-					System.out.println(jobNum);
 					 request.getRequestDispatcher("response.jsp").forward(request, response);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 		 }else if(type.equals("poll")){
-			
-			 System.out.println("poll is here");
-			
 			 RemoteFibonacci remoteFibonacci;
 			try {
 				remoteFibonacci = (RemoteFibonacci) Naming.lookup("rmi://localhost:1099/fib");
-				 System.out.println("after naming"+remoteFibonacci);
-				 System.out.println(request.getParameter("num"));
-				String result=remoteFibonacci.getFibancciSequence(Integer.parseInt(request.getParameter("num")));
-				 System.out.println("after result");
-				 
-				request.setAttribute("result", result);
-
-				System.out.println(result);
 				
+				String result=remoteFibonacci.getFibancciSequence(Integer.parseInt(request.getParameter("num")));
+				request.setAttribute("result", result);
+	
 				 if(result!=null){
 						response.sendRedirect("result.jsp?result="+result);
 						return;

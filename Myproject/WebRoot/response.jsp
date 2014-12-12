@@ -29,7 +29,7 @@
     </table>
     
   <%
-  //request.setAttribute("", o)
+  
    response.addHeader("refresh","10;http://localhost:8080/Myproject/Requestservlett?request-type=poll&num="+request.getAttribute("max"));
   
    %>

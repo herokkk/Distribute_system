@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Random;
 
-public class FibService {
+public class FibonacciService {
   private LinkedList<FibRequest> inqueue=new LinkedList<FibRequest>();
   
   private Map<Integer, String> outqueue=new HashMap<Integer, String>();
@@ -29,4 +29,8 @@ public class FibService {
 		return null;
 	}
   }
+  
+  public static void main(String[] args) {
+	
+}
 }
