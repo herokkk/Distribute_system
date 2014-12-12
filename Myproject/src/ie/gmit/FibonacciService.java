@@ -46,6 +46,11 @@ public void makeRMIcall(int max, int jobNum) {
 }catch(Exception e){
 	 e.printStackTrace();  
 }
+		
+	
 }
   
+public static void main(String[] args) {
+	
+}
 }

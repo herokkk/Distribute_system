@@ -1,3 +1,4 @@
+<%@page import="java.awt.event.WindowStateListener"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*" %>
 <%@ page import="java.io.IOException"%>
@@ -29,7 +30,7 @@
     </table>
     
   <%
-  
+   
    response.addHeader("refresh","10;http://localhost:8080/Myproject/Requestservlett?request-type=poll&num="+request.getAttribute("max")+"&jobnum="+request.getAttribute("jobnum"));
   
    %>
