@@ -81,9 +81,9 @@ public class Requestservlett extends HttpServlet {
 				remoteFibonacci = (RemoteFibonacci) Naming.lookup("rmi://localhost:1099/fib");
 				
 				String result=remoteFibonacci.getFibancciSequence(Integer.parseInt(request.getParameter("num")));
-				request.setAttribute("result", result);
-	
+			
 				 if(result!=null){
+					 request.setAttribute("result", result);
 						response.sendRedirect("result.jsp?result="+result);
 						return;
 					 }else {
