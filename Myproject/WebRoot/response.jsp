@@ -30,7 +30,7 @@
     
   <%
   
-   response.addHeader("refresh","10;http://localhost:8080/Myproject/Requestservlett?request-type=poll&num="+request.getAttribute("max"));
+   response.addHeader("refresh","10;http://localhost:8080/Myproject/Requestservlett?request-type=poll&num="+request.getAttribute("max")+"&jobnum="+request.getAttribute("jobnum"));
   
    %>
     
